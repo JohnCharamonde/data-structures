@@ -10,9 +10,6 @@ var Queue = function() {
   var firstIndex = 0;
   someInstance.enqueue = function(value) {
     // add value to key at end of storage object
-
-
-
     storage[currentIndex] = value;
     currentIndex++;
     // return storage
