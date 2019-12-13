@@ -76,6 +76,7 @@ define([
         stack.push('a');
         stack.push('b');
         expect(stack.pop()).to.equal('b');
+        expect((variant !== 'functional') ? stack.storage : storage).to.eql({ 0: 'a' });
       });
 
       it('removes the newest item, after newer items have already been added and removed', function() {
@@ -84,6 +85,7 @@ define([
         stack.push('c');
         stack.pop();
         expect(stack.pop()).to.equal('b');
+        expect((variant !== 'functional') ? stack.storage : storage).to.eql({ 0: 'a' });
       });
     });
 
@@ -148,6 +150,7 @@ define([
         queue.enqueue('a');
         queue.enqueue('b');
         expect(queue.dequeue()).to.equal('a');
+        expect((variant !== 'functional') ? queue.storage : storage).to.eql({ 1: 'b' });
       });
 
       it('removes the oldest item, after newer items have already been added and removed', function() {
@@ -156,6 +159,7 @@ define([
         queue.dequeue();
         queue.enqueue('c');
         expect(queue.dequeue()).to.equal('b');
+        expect((variant !== 'functional') ? queue.storage : storage).to.eql({ 2: 'c'});
       });
     });
 
