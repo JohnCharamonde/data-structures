@@ -1,6 +1,6 @@
 var Stack = function () {
   var someInstance = {};
-  var storage = {};
+  storage = {};
   var length = 0;
 
   someInstance.push = function (value) {
