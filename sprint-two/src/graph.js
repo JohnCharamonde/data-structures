@@ -61,7 +61,9 @@ Graph.prototype.addEdge = function (fromNode, toNode) {
       toIndex = i;
     }
   }
-  this.nodes[fromIndex].edges.push(this.nodes[toIndex]);
+  if (fromNode !== toNode) {
+    this.nodes[fromIndex].edges.push(this.nodes[toIndex]);
+  }
   this.nodes[toIndex].edges.push(this.nodes[fromIndex]);
 };
 
@@ -86,6 +88,7 @@ Graph.prototype.removeEdge = function (fromNode, toNode) {
   for (let i = 0; i < this.nodes[toIndex].edges.length; i++) {
     if (this.nodes[toIndex].edges[i].value === fromNode) {
       this.nodes[toIndex].edges.splice(i, 1);
+      break;
     }
   }
 };
