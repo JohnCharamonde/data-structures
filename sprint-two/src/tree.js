@@ -1,23 +1,27 @@
-var Tree = function(value) {
+var Tree = function (value) {
   var newTree = {};
+  _.extend(newTree, treeMethods);
   newTree.value = value;
-
-  // your code here
-  newTree.children = null;  // fix me
-
+  newTree.children = [];
   return newTree;
-};
+};//Complexity O(1)
 
 var treeMethods = {};
 
-treeMethods.addChild = function(value) {
-};
+treeMethods.addChild = function (value) {
+  this.children.push(Tree(value));
+};//Complexity O(1)
 
-treeMethods.contains = function(target) {
-};
-
-
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
+treeMethods.contains = function (target) {
+  if (this.value === target) {
+    return true;
+  } else if (this.children.length > 0) {
+    let children = this.children;
+    for (let i = 0; i < children.length; i++) {
+      if (children[i].contains(target)) {
+        return true;
+      }
+    }
+  }
+  return false;
+};//Complexity O(n)
